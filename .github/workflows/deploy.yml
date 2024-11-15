@@ -1,0 +1,65 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install Dependencies
+      run: npm install
+      
+    - name: Build Project
+      run: npm run build
+      
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v3
+      with:
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        known_hosts: unnecessary
+        if_key_exists: replace
+        
+    - name: Adding Known Hosts
+      run: ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+      
+    - name: Check Public Directory
+      run: |
+        echo "Checking public directory content:"
+        ls -la ./public/
+        
+    - name: Deploy 3D Project
+      run: |
+        echo "Starting deployment..."
+        rsync -avz --delete --progress ./public/ ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:/var/www/infalabs/3d-project/
+        echo "Deployment completed"
+        
+    - name: Verify Deployment
+      run: |
+        echo "Verifying deployment..."
+        ssh ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} '
+          echo "Server directory content:" &&
+          ls -la /var/www/infalabs/3d-project/ &&
+          echo "Checking subdirectories:" &&
+          find /var/www/infalabs/3d-project/ -type d
+        '
+        
+    - name: Set Permissions
+      run: |
+        ssh ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} '
+          sudo chown -R www-data:www-data /var/www/infalabs/3d-project &&
+          sudo chmod -R 755 /var/www/infalabs/3d-project
+        '
+
+    - name: Reload Nginx
+      run: |
+        ssh ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} 'sudo systemctl reload nginx' 

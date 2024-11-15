@@ -184,8 +184,8 @@ export default class MonitorScreen extends EventEmitter {
 
         // Set iframe attributes
         // PROD
-        iframe.src = 'http://192.168.1.15:3000/';
-        // iframe.src = 'https://memejump.io';
+        iframe.src = 'https://app.infalabs.io/';
+        // iframe.src = 'https://192.168.1.15:3000/';
         /**
          * Use dev server is query params are present
          *
