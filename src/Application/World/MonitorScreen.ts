@@ -184,7 +184,7 @@ export default class MonitorScreen extends EventEmitter {
 
         // Set iframe attributes
         // PROD
-        iframe.src = 'http://localhost:3000/';
+        iframe.src = 'http://192.168.1.15:3000/';
         // iframe.src = 'https://memejump.io';
         /**
          * Use dev server is query params are present
@@ -205,7 +205,7 @@ export default class MonitorScreen extends EventEmitter {
         iframe.className = 'jitter';
         iframe.id = 'computer-screen';
         iframe.frameBorder = '0';
-        iframe.title = 'HeffernanOS';
+        iframe.title = 'DexterOS';
 
         // Add iframe to container
         container.appendChild(iframe);
