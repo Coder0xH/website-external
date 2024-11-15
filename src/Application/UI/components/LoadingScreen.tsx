@@ -149,25 +149,26 @@ const LoadingScreen: React.FC<LoadingProps> = () => {
                         <div style={styles.logoContainer}>
                             <div>
                                 <p style={styles.green}>
-                                    <b>INAFlab,</b>{' '}
+                                    <b>Infinity Affinity Lab,</b>{' '}
                                 </p>
                                 <p style={styles.green}>
-                                    <b>INAF Inc.</b>
+                                    <b>INAFLab.</b>
                                 </p>
                             </div>
                         </div>
                         <div style={styles.headerInfo}>
-                            <p>Released: 01/13/2000</p>
-                            <p>HHBIOS (C)2000 Infinity Affinity Lab.,</p>
+                            <p>Released: 06/25/2023</p>
+                            <p>IALBIOS (C)2023 Infinity Affinity Lab.,</p>
                         </div>
                     </div>
                     <div style={styles.body} className="loading-screen-body">
-                        <p>HSP S13 2000-2022 Special UC131S</p>
+                        <p>IAL S6 2023-2024 Special UC131S</p>
                         <div style={styles.spacer} />
                         {showBiosInfo && (
                             <>
-                                <p>HSP Showcase(tm) XX 113</p>
-                                <p>Checking RAM : {14000} OK</p>
+                                {/* <p>HSP Showcase(tm) XX 113</p> */}
+                                <p>INAF Lab(tm) XX 113</p>
+                                <p>Checking RAM : 14000 OK</p>
                                 <div style={styles.spacer} />
                                 <div style={styles.spacer} />
                                 {showLoadingResources ? (
@@ -195,7 +196,7 @@ const LoadingScreen: React.FC<LoadingProps> = () => {
                             <p>
                                 All Content Loaded, launching{' '}
                                 <b style={styles.green}>
-                                    'Infinity Affinity Website Showcase'
+                                    'Infinity Affinity Lab'
                                 </b>{' '}
                                 V1.0
                             </p>
@@ -221,13 +222,13 @@ const LoadingScreen: React.FC<LoadingProps> = () => {
                 })}
             >
                 <div style={styles.startPopup}>
-                    <p style={styles.red}>
+                    {/* <p style={styles.red}>
                         <b>THIS SITE IS I.A WEBSITE</b>
-                    </p>
-                    <p>A Web3.0 project incubation lab :)</p>
-                    <div style={styles.spacer} />
-                    <div style={styles.spacer} />
-                    <p>Infinity Affinity Website 2024</p>
+                    </p> */}
+                    <p>Infinity Affinity Lab 2024</p>
+                    {/* <div style={styles.spacer} /> */}
+                    {/* <div style={styles.spacer} /> */}
+                    <p>A Web3.0 project incubation lab</p>
                     {mobileWarning && (
                         <>
                             <br />
