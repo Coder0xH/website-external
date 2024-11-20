@@ -1,4 +1,4 @@
-# [henryheffernan.com](https://infalabs.io/)
+# [infalabs.io](https://infalabs.io/)
 
 <br>
 
